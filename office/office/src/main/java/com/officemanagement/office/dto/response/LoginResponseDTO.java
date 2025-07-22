@@ -1,17 +1,14 @@
 package com.officemanagement.office.dto.response;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
 public class LoginResponseDTO {
-    private String token;
     private Long userId;
-    private String role;
-    private String name;
+    private String username;
     private String email;
-    private String department;
-    private String designation;
-
+    private String role;
+    private String message;
 }

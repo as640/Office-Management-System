@@ -22,6 +22,12 @@ public class HolidayServiceImpl implements HolidayService {
 
     @Override
     public HolidayEntity addHoliday(HolidayRequestDTO request) {
+        // Prevent duplicate holiday on same title and date
+        boolean exists = holidayRepository.existsByTitleIgnoreCaseAndHolidayDate(request.getTitle(), request.getHolidayDate());
+        if (exists) {
+            throw new RuntimeException("Holiday with the same title and date already exists.");
+        }
+
         HolidayEntity holiday = new HolidayEntity();
         holiday.setTitle(request.getTitle());
         holiday.setHolidayDate(request.getHolidayDate());
@@ -40,4 +46,12 @@ public class HolidayServiceImpl implements HolidayService {
         holiday.setRecurring(request.getRecurring());
         return holidayRepository.save(holiday);
     }
+    @Override
+    public HolidayEntity deleteHoliday(Long id) {
+        HolidayEntity holiday = holidayRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Holiday not found"));
+        holidayRepository.delete(holiday);
+        return holiday;
+    }
+
 }

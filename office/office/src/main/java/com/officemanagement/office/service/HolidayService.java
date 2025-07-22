@@ -9,4 +9,7 @@ public interface HolidayService {
     List<HolidayEntity> getAllHolidays();
     HolidayEntity addHoliday(HolidayRequestDTO request);
     HolidayEntity updateHoliday(Long id, HolidayRequestDTO request);
+    HolidayEntity deleteHoliday(Long id);
+
+
 }

@@ -30,4 +30,10 @@ public class HolidayController {
     public ResponseEntity<HolidayEntity> updateHoliday(@PathVariable Long id, @RequestBody HolidayRequestDTO request) {
         return ResponseEntity.ok(holidayService.updateHoliday(id, request));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<HolidayEntity> deleteHoliday(@PathVariable Long id) {
+        return ResponseEntity.ok(holidayService.deleteHoliday(id));
+    }
+
 }
